@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title style='position:relative;left:80px; top:2px' >User {{ user.username }} Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <style>
+    #rcorners1 {
+    border-radius: 25px;
+    background: lightblue;
+    padding: 20px; 
+    width: 1290px;
+    display: flex;
+    align-items: center;
+    min-height:200px;
+    flex-wrap: wrap;
+    }
+    #rcorners2 {
+    display: block;
+    border-radius: 25px;
+    background: steelblue;
+    flex-direction: column;
+    padding: 20px; 
+    align-items: center;
+    min-height: 100px; 
+    width: 200px;
+    text-overflow: ellipsis;
+    margin-top: 10px;
+    flex:1;
+    }
+    .red-button:hover {
+    background-color: darkred;
+    }
+    .nav-link{
+      color:black
+    }
+    .btn-outline-success {
+    --bs-btn-color: black;
+    --bs-btn-bg: lightyellow;
+    --bs-btn-border-color: darkslategray;
+    --bs-btn-hover-color: black;
+    --bs-btn-hover-bg: seagreen;
+    --bs-btn-hover-border-color: lightgrey;
+  }
+  </style>
+</head>
+<body style="background-color: lightslategray;">
+  <div style='border:2px solid black;background-color:darkgrey;' class="d-flex justify-content-between">
+    <div style="justify-content:flex-start">
+      <h1 style="display:inline-block;font-size:30px ;">WELCOME {{ user.username|upper }}</h1>
+    </div>
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link" href="/user/profile/{{ user.id }}">PROFILE</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/order/history/{{ user.id }}">ORDERS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/home/{{ user.id }}">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/cart/{{ user.id }}">
+          CART
+            {% if cartn !=0 %}
+            <span class="badge rounded-pill bg-success">{{ cartn }}</span>
+            {% endif %}
+        </a>
+      </li>
+      <li class="nav-item">
+        <form class="form-inline" action="/user/search/{{ user.id }}" method="POST">
+          <div class="input-group">
+            <input class="form-control" type="search" placeholder="Search Product" aria-label="Search" name="search" required>
+            <div class="input-group-append">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">SEARCH PRODUCT </button>
+            </div>
+            <div class="input-group-append">
+              <a href="/user/advsearch/{{ user.id }}" class="btn btn-outline-success my-2 my-sm-0">ADVANCED SEARCH</a>
+            </div>
+          </div>
+        </form>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">LOGOUT</a>
+        </li>
+      </li>
+    </ul>
+  </div>
+  <p style="font-size:30px;text-align:end;margin-right: 50px;">DATE : {{ dat }} </p>
+  <br>
+  <div class="container text-center">
+    {% for c in cat %}
+    <div class="row row-cols-5" id="rcorners1">
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col" style="font-size: 24px;text-decoration: underline;">
+      {{ c.category_name|upper }}
+      </div>
+      <div class="col"></div>
+      <div class="col"></div>
+        {% for i in prod %}
+        {% if c.category_id == i.product_category %}
+      <div class="col">
+          <div id="rcorners2"> 
+          <span>{{ i.product_name|upper }}</span>
+          <br>
+          Rs.<span>{{ i.product_rate }}</span>/qty
+          {% if i.product_quantity < 1 %}
+          <a href='/user/cart/{{ user.id }}/{{ i.product_id }}'><button type="button" class="btn btn-success red-button" style="--bs-btn-bg: red" >ADD TO CART</button></a>
+          {% else %}
+          <a href='/user/cart/{{ user.id }}/{{ i.product_id }}'><button type="button" class="btn btn-success" style="--bs-btn-bg: midnightblue; ">ADD TO CART</button></a>
+          {% endif %}
+          </div>
+          <br>
+      </div>   
+        {% endif %}
+        {% endfor %}
+    </div>
+    <br>
+    {% endfor %}
+  </div>  
+</body>
+</html>

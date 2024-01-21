@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title style='position:relative;left:80px; top:2px' >CONFIRM PRODUCT DELETE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <style>
+    .nav-link{
+  color:black
+  }   
+  </style>
+</head>
+<body style="background-color: lightblue;">
+  <div style='border:2px solid black;background-color: skyblue;' class="d-flex justify-content-between">
+    <div style="justify-content:flex-start">
+      <h1 style="display:inline-block">DELETE PRODUCT CONFIRM</h1>
+    </div>
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/home">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">LOGOUT</a>
+      </li>
+    </ul>
+  </div>
+  <div class="container text-center" style="position:relative;top:30px">
+    <div class="row" style="background-color: steelblue;" >
+      <div>
+      </div>
+      <div style='border:2px solid black'class="col">
+          <div style='position:relative;top:10px;left:-41px'>
+            <label> CATEGORY NAME:</label>
+            <input type="text" name="category_name" value= '{{ cat.category_name }}' readonly />
+          </div>
+          <br>
+          <div style='position:relative;top:10px;left:-39px'>
+            <label> PRODUCT NAME:</label>
+            <input type="text" name="product_name" value= '{{ prod.product_name }}' style="background-color: darkgrey;" readonly />
+          </div>
+          <br>
+          <div style='position:relative;top:10px;left:-40px'>
+            <label>MANUFACTURER:</label>
+            <input type="text" name="product_manufacture" value= '{{ prod.product_manufacture }}' style="background-color: darkgrey;" readonly />
+          </div>
+          <br>
+          <div style='position:relative;top:10px;left:-81px'>
+            <label>EXPIRY DATE:</label>
+            <input type="date" name="product_expirydate" value= '{{ prod.product_expirydate }}' style="background-color: darkgrey;" readonly/>
+          </div>
+          <br>
+          <div style='position:relative;top:10px;left:3px'>
+            <label>RATE:</label>
+            <input type="number" name="product_rate" value= '{{ prod.product_rate }}' style="background-color: darkgrey;" readonly />
+          </div>
+          <br>
+          <div style='position:relative;top:10px;left:-55px'>
+            <label>PRODUCT QUANTITY:</label>
+            <input type="number" name="product_quantity" value= '{{ prod.product_quantity }}' style="background-color: darkgrey;" readonly />
+          </div>
+          <br>
+          <div>
+            <a href="/product/delete/{{ prod.product_id }}" class="btn btn-success">DELETE PRODUCT CONFIRM</a>
+          </div>
+          <br>
+        </form>
+      </div>
+      <div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

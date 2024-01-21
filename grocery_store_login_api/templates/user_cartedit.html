@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script>
+    function calc(){
+      event.preventDefault();
+      let val=(document.getElementById("cart_qty").value);
+      let pric=(document.getElementById("prod_price").value);
+      let tot=val*pric;
+      document.getElementById("total").value=tot;
+    }
+  </script>
+  <style>
+    .nav-link{
+      color:black
+    }
+    .btn-primary,.btn-outline-success {
+    --bs-btn-color: black;
+    --bs-btn-bg: lightyellow;
+    --bs-btn-border-color: darkslategray;
+    --bs-btn-hover-color: black;
+    --bs-btn-hover-bg: seagreen;
+    --bs-btn-hover-border-color: lightgrey;
+  }
+  .th {
+    border:2px solid black;
+  }
+  </style>
+</head>
+<body style="background-color: lightslategray;">
+  <div style='border:2px solid black;background-color: darkgrey;' class="d-flex justify-content-between">
+    <div style="justify-content:flex-start">
+      <h1 style="display:inline-block;font-size:30px;">USER {{ user.username|upper }} CART</h1>
+    </div>
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link" href="/user/profile/{{ user.id }}">PROFILE</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/order/history/{{ user.id }}">ORDERS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/cart/{{ user.id }}">
+          CART
+            {% if cartn !=0 %}
+            <span class="badge rounded-pill bg-success">{{ cartn }}</span>
+            {% endif %}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/home/{{ user.id }}">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">LOGOUT</a>
+      </li>
+      <li class="nav-item">
+        <form class="form-inline" action="/user/search/{{ user.id }}" method="POST">
+          <div class="input-group">
+            <input class="form-control" type="search" name='search' placeholder="SEARCH PRODUCT" aria-label="Search" required>
+            <div class="input-group-append">
+              <button class="btn btn-outline-success my-2 my-sm-0" ty pe="submit">SEARCH PRODUCT </button>
+            </div>
+          </div>
+        </form>
+      </li> 
+    </ul>
+  </div>
+    <br>
+    <p style="font-size:30px;text-align:end;margin-right: 50px;">DATE : {{ dat }} </p>
+  <div style="position:relative;top:20px;left:39px">
+    <h2> CART ADD PRODUCT: {{ prod.product_name|upper }} , CART CATEGORY: {{ cat.category_name|upper }} </h2>   
+  </div>
+  <div class="container text-center" style="position:relative;top:120px">
+    <div class="col">
+      <div style='border:2px solid black;width:50%;margin-left:308px'class="col">
+        <form action="/user/cart/edit/{{ car.cart_id }}/{{ user.id }}" style="background-color:dimgrey;" method="POST" id="create-screen-form">
+          <br>
+          <div style='position:relative;top:10px;left:-37px'>
+            <label> AVAILABLE QTY:</label>
+            <input type="number" name="product_quantity" value= '{{ prod.product_quantity }}' readonly style="background-color: lightgrey;" />
+          </div>
+          <br>
+          <div style='position:relative;top:10px;left:30px'>
+            <label> QTY NEEDED:</label>
+            <input type="number" id="cart_qty" name="cart_qty" value="{{ car.cart_productqty }}" required style="background-color: lightgrey;width:260px" max="{{ prod.product_quantity }}" min="1"  />
+            <button onclick="calc()" class="btn btn-primary">CALCULATE</button>
+          </div>
+          <br>
+          <div style='position:relative;top:10px;left:-1px'>
+            <label>PRICE:</label>
+            <input type="number" id="prod_price" name="prod_price" value= '{{ prod.product_rate }}' readonly style="background-color: lightgrey;" />
+          </div>
+          <br>
+          <div style='position:relative;top:10px;left:-4px'>
+            <label>TOTAL:</label>
+            <input type="number" id="total" name="booking_total" style="background-color: lightgrey;"/>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-primary">UPDATE</button>
+            <a href="/user/cart/delete/{{ car.cart_id }}/{{ user.id }}"><button type="button" class="btn btn-primary">DELETE</button></a>
+          </div>
+          <br>
+        </form>    
+      </div>
+    </div>
+  </div>
+</body>
+</html>

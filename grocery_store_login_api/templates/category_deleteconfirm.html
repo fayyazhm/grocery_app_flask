@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title style='position:relative;left:80px; top:2px' >CATEGORY DELETE CONFIRM</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <style>
+    .nav-link{
+  color:black
+}
+.btn-primary{
+    --bs-btn-color: black;
+    --bs-btn-bg: lightyellow;
+    --bs-btn-border-color: darkslategray;
+    --bs-btn-hover-color: black;
+    --bs-btn-hover-bg: seagreen;
+    --bs-btn-hover-border-color: lightgrey;
+  }
+</style>
+</head>
+<body style="background-color: lightblue;">
+  <div style='border:2px solid black;background-color: skyblue;' class="d-flex justify-content-between">
+    <div style="justify-content:flex-start">
+      <h1 style="display:inline-block">CATEGORY DELETE CONFIRM</h1>
+    </div>
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/home">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">LOGOUT</a>
+      </li>
+    </ul>
+  </div>
+  <div class="container text-center" style="position:relative;top:30px">
+    <div class="row" style="background-color:steelblue ;">
+      <div>
+      </div>
+      <div style='border:2px solid black'class="col">
+        <form action="/admin/category/delete/{{ cat.category_id }}" method="GET" id="edit-venue-form">
+          <h1>CATEGORY DELETE CONFIRM</h1>
+          <br>
+          <div style='position:relative;top:10px;left:-25px'>
+            <label> CATEGORY NAME:</label>
+            <input type="text" value= '{{ cat.category_name }}' name="category_name" style="background-color: darkgrey;" readonly />
+          </div>
+          <br>
+          <div>
+            <button type="submit" class="btn btn-primary">CONFIRM DELETE</button>
+          </div>
+          <br>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

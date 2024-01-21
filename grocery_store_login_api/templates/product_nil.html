@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title style='position:relative;left:80px; top:2px' >Show is Housefull</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <style>
+    .nav-link{
+      color:black
+    }
+    .btn-outline-success {
+    --bs-btn-color: black;
+    --bs-btn-bg: lightyellow;
+    --bs-btn-border-color: darkslategray;
+    --bs-btn-hover-color: black;
+    --bs-btn-hover-bg: seagreen;
+    --bs-btn-hover-border-color: lightgrey;
+  }
+  </style>
+</head>
+<body style="background-color: lightslategray;">
+  <div style='border:2px solid black;background-color: darkgrey;' class="d-flex justify-content-between">
+    <div style="justify-content:flex-start">
+      <h1 style="display:inline-block;font-size: 30px;">USER {{ user.username|upper }}</h1>
+    </div>
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link" href="/user/profile/{{ user.id }}">PROFILE</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/order/history/{{ user.id }}">ORDERS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/home/{{ user.id }}">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">LOGOUT</a>
+      </li>
+      <li class="nav-item">
+        <form class="form-inline" action="/user/search/{{ user.id }}" method="POST">
+          <div class="input-group">
+            <input class="form-control" type="search" placeholder="Search Movie" aria-label="Search" name="search" required>
+            <div class="input-group-append">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">SEARCH MOVIE</button>
+            </div>
+            <div class="input-group-append">
+              <a href="/user/advsearch/{{ user.id }}" class="btn btn-outline-success my-2 my-sm-0">ADVANCED SEARCH</a>
+            </div>
+          </div>
+        </form>
+      </li>
+    </ul>
+  </div>
+  <p style="font-size:30px;text-align:end;margin-right: 50px;">DATE : {{ dat }} </p>
+  <div class="container" style='position:relative;top:29px'>
+    <br>
+    <br>
+    <h1 style="color:black">Sorry...... {{ prod.product_name|upper }} IS NOT AVAILABLE RIGHT NOW.</h1>
+  </div>    
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title style='position:relative;left:80px; top:2px' >User Registration</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <style>
+    .btn-primary, .btn-outline-success {
+    --bs-btn-color: black;
+    --bs-btn-bg: lightyellow;
+    --bs-btn-border-color: darkslategray;
+    --bs-btn-hover-color: black;
+    --bs-btn-hover-bg: seagreen;
+    --bs-btn-hover-border-color: lightgrey;
+  }
+  </style>
+</head>
+<body style="background-color: lightslategray;">
+  <h1 style="margin-left:750px;margin-top:30px;text-decoration: underline;"> USER REGISTRATION</h1>
+  <br>
+  <div class="container" style="border:2px solid black;width:45%;background-color:dimgrey" >
+    <form action="/user/registration" method="POST" id="edit-user-form">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4" style="font-size:20px;">USERNAME</label>
+          <input type="text" class="form-control" id="inputEmail4" placeholder="username" name="username" required>
+        </div>
+        <br>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4" style="font-size:20px;">PASSWORD</label>
+          <input type="password" class="form-control" id="inputPassword4" placeholder="Password" name="password" required>
+        </div>
+        <br>
+      </div>
+      <div class="form-group">
+        <label for="inputAddress" style="font-size:20px;">ADDRESS</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address" required>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="inputAddress2" style="font-size:20px;">ADDRESS 2</label>
+        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="address2" required>
+      </div>
+      <br>
+      <div class="form-group col-md-6">
+        <label for="inputCity" style="font-size:20px;">CITY</label>
+        <input type="text" class="form-control" id="inputCity" name="city" required>
+      </div>
+      <br>
+      <div class="form-group col-md-4">
+        <label for="inputState" style="font-size:20px;">STATE</label>
+        <input type="text" class="form-control" id="inputstate" name="state" required>
+      </div>
+      <br>
+      <div class="form-group col-md-2">
+        <label for="inputZip" style="font-size:20px;">ZIP</label>
+        <input type="text" class="form-control" id="inputZip" name="zip" required>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary">REGISTER</button>
+    </form>
+    <br>
+  </div>
+</body>
+</html>
